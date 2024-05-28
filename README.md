@@ -28,7 +28,7 @@ EtsyXtractor is a Chrome extension designed to help users effortlessly scrape an
 
 ## Screenshots
 
-![EtsyXtractor Popup](screenshots/etsyXtractor_popup.png)
+![etsyXtractor_popup](https://github.com/Elegantedev/Etsy-Tags-Scraper/assets/121271378/2b9cc0ff-acf2-4101-9451-9609891ea76a)
 
 ## Contributing
 
