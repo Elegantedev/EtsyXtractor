@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tag Extractor Pro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      width: 320px;
+      background-color: #f3f4f6;
+      color: #333;
+    }
+    h1 {
+      font-size: 20px;
+      color: #4a4a4a;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #4a4a4a;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      resize: none;
+    }
+    button {
+      background-color: #6a1b9a;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #8e24aa;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tag Extractor Pro</h1>
+  <label for="mainTagsTextbox">Listing Tags:</label>
+  <textarea id="mainTagsTextbox" placeholder="Main tags will appear here..."></textarea>
+  <label for="relatedTagsTextbox">Related Searches:</label>
+  <textarea id="relatedTagsTextbox" placeholder="Related tags will appear here..."></textarea>
+  <div class="button-container">
+    <button id="scrapeTagsButton">Scrape Tags</button>
+    <button id="copyButton">Copy Tags</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
