@@ -51,3 +51,36 @@ button {
 button:hover {
     background-color: #E64A19; /* Darker orange */
 }
+
+.separator {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 20px 0;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    text-align: left;
+    width: 100%;
+}
+
+.footer a {
+    color: #4A148C; /* Dark purple */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer .icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}

@@ -6,32 +6,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const relatedTagsTextbox = document.getElementById('relatedTagsTextbox');
   
     // Load saved tags from local storage
-    mainTagsTextbox.value = localStorage.getItem('mainTags') || '';
-    relatedTagsTextbox.value = localStorage.getItem('relatedTags') || '';
+    chrome.storage.local.get(['mainTags', 'relatedTags'], (result) => {
+      mainTagsTextbox.value = result.mainTags || '';
+      relatedTagsTextbox.value = result.relatedTags || '';
+    });
   
     scrapeButton.addEventListener('click', () => {
       // Send a message to the content script to scrape tags
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id, { action: 'scrapeTags' }, (response) => {
-          console.log(response.status);
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          function: scrapeTags
+        }, (injectionResults) => {
+          for (const frameResult of injectionResults) {
+            const { mainTags, relatedTags } = frameResult.result;
+            mainTagsTextbox.value = mainTags.join(', ');
+            relatedTagsTextbox.value = relatedTags.join(', ');
+            // Save to local storage
+            chrome.storage.local.set({
+              mainTags: mainTagsTextbox.value,
+              relatedTags: relatedTagsTextbox.value
+            });
+          }
         });
       });
-    });
-  
-    // Listen for messages from the content script
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-      if (message.mainTags) {
-        // Display the main tags in the text box
-        mainTagsTextbox.value = message.mainTags.join(', ');
-        // Save to local storage
-        localStorage.setItem('mainTags', mainTagsTextbox.value);
-      }
-      if (message.relatedTags) {
-        // Display the related tags in the text box
-        relatedTagsTextbox.value = message.relatedTags.join(', ');
-        // Save to local storage
-        localStorage.setItem('relatedTags', relatedTagsTextbox.value);
-      }
     });
   
     // Copy the content of both text boxes to clipboard
@@ -52,8 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
     clearButton.addEventListener('click', () => {
       mainTagsTextbox.value = '';
       relatedTagsTextbox.value = '';
-      localStorage.removeItem('mainTags');
-      localStorage.removeItem('relatedTags');
+      chrome.storage.local.remove(['mainTags', 'relatedTags']);
     });
   });
+  
+  function scrapeTags() {
+    const mainTags = Array.from(document.querySelectorAll('h3.tag-card-title')).map(tag => tag.textContent.trim());
+  
+    const relatedTags = Array.from(document.querySelectorAll('.wt-action-group__item-container a'))
+      .map(tag => tag.textContent.trim())
+      .filter(tag => !tag.toLowerCase().includes('page'));
+  
+    return { mainTags, relatedTags };
+  }
   
