@@ -13,10 +13,9 @@ EtsyXtractor is a Chrome extension designed to help users effortlessly scrape an
 ## Installation
 
 1. Clone or download this repository.
-2. **Important:** Unzip the ZIP file called `Icons` before proceeding to the next steps.
-3. Open Google Chrome and navigate to `chrome://extensions/`.
-4. Enable "Developer mode" by clicking the toggle switch in the top right corner.
-5. Click the "Load unpacked" button and select the directory containing the unzipped files.
+2. Open Google Chrome and navigate to `chrome://extensions/`.
+3. Enable "Developer mode" by clicking the toggle switch in the top right corner.
+4. Click the "Load unpacked" button and select the directory containing the unzipped files.
 
 ## Usage
 
