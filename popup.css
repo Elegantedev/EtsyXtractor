@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+    padding: 10px;
+    width: 300px;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #4A148C; /* Dark purple */
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+button {
+    background-color: #FF5722; /* Orange */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #E64A19; /* Darker orange */
+}

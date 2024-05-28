@@ -1,10 +1,8 @@
-chrome.action.onClicked.addListener((tab) => {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: scrapeEtsyTags
-  });
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+  if (message.action === 'setTags') {
+      chrome.storage.local.set({
+          mainTags: message.mainTags,
+          relatedTags: message.relatedTags
+      });
+  }
 });
-
-function scrapeEtsyTags() {
-  console.log('Background script: content script triggered.');
-}

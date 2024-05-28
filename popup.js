@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const scrapeButton = document.getElementById('scrapeTagsButton');
     const copyButton = document.getElementById('copyButton');
+    const clearButton = document.getElementById('clearButton');
     const mainTagsTextbox = document.getElementById('mainTagsTextbox');
     const relatedTagsTextbox = document.getElementById('relatedTagsTextbox');
   
@@ -45,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
       document.execCommand('copy');
       document.body.removeChild(tempTextarea);
       alert('Tags copied to clipboard!');
+    });
+  
+    // Clear the content of both text boxes
+    clearButton.addEventListener('click', () => {
+      mainTagsTextbox.value = '';
+      relatedTagsTextbox.value = '';
+      localStorage.removeItem('mainTags');
+      localStorage.removeItem('relatedTags');
     });
   });
   
